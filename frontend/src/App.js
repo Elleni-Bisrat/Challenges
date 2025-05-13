@@ -1,43 +1,31 @@
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import About from "./pages/Aboutus";
-import Courses from "./pages/Courses";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Home from './Home';
+import AdminLogin from './AdminLogin';
+import AddPerson from './AddPerson';
+import PeopleList from './PeopleList';
 
-import BooksThirdYear from "./component/Books/BooksThirdYear";
-import BooksFourthYear from "./component/Books/BooksFourthYear";
-import BooksSecondYear from "./component/Books/BooksSecondYear";
-import BooksFifthYear from "./component/Books/BooksFifthYear";
-
-import HandoutsSecondYear from "./component/Handouts/HandoutsSecondYear";
-import HandoutsThirdYear from "./component/Handouts/HandoutsThirdYear";
-import HandoutsFourthYear from "./component/Handouts/HandoutsFifthYear";
-import HandoutsFifthYear from "./component/Handouts/HandoutsFifthYear";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/courses" element={<Courses />} />
-
-        <Route path="/BooksThirdYear" element={<BooksThirdYear />} />
-        <Route path="/BooksFourthYear" element={<BooksFourthYear />} />
-        <Route path="/BooksSecondYear" element={<BooksSecondYear />} />
-        <Route path="/BooksFifthYear" element={<BooksFifthYear />} />
-
-
-        <Route path="/HandoutsSecondYear" element={<HandoutsSecondYear />} />
-        <Route path="/HandoutsThirdYear" element={<HandoutsThirdYear />} />
-        <Route path="/HandoutsFourthYear" element={<HandoutsFourthYear />} />
-        <Route path="/HandoutsFifthYear" element={<HandoutsFifthYear />} />
-
+        <Route 
+          path="/admin" 
+          element={isAuthenticated ? <Navigate to="/add-person" /> : <AdminLogin setIsAuthenticated={setIsAuthenticated} />} 
+        />
+        <Route 
+          path="/add-person" 
+          element={isAuthenticated ? <AddPerson /> : <Navigate to="/admin" />} 
+        />
+        <Route 
+          path="/people-list" 
+          element={isAuthenticated ? <PeopleList /> : <Navigate to="/admin" />} 
+        />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
