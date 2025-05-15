@@ -11,7 +11,7 @@ function PeopleList() {
     const fetchPeople = async () => {
       try {
         const response = await fetch(
-          "http://localhost/AddAndRemove/backend/api.php?action=get_people"
+          "https://addandremove.infinityfreeapp.com/challenges/backend/api.php?action=get_people"
         );
         const data = await response.json();
         setPeople(data);
