@@ -11,7 +11,7 @@ function AdminLogin({ setIsAuthenticated }) {
     setError('');
     
     try {
-      const response = await fetch('http://localhost/AddAndRemove/backend/api.php', {
+      const response = await fetch('https://addandremove.infinityfreeapp.com/challenges/backend/api.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
