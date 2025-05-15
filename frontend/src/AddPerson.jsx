@@ -38,7 +38,7 @@ function AddPerson() {
 
     try {
       const response = await fetch(
-        "http://localhost/AddAndRemove/backend/api.php",
+        "https://addandremove.infinityfreeapp.com/challenges/backend/api.php",
         {
           method: "POST",
           headers: {
